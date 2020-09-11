@@ -35,7 +35,7 @@ AWS Management console &rarr Services &rarr `Lambda` &rarr Get Started (first ti
 
 •	May select which ever suits you, will select `Author from scratch` &rarr;
 1.	Function name: `Lambda-function`
-2.	Runtime: `Python3.7`
+2.	Runtime: `Python3.8`
 3.	`Permissions`: Execute role: `create a new role with basic Lambda permissions`
 4.	Click on ‘create’
 
@@ -52,8 +52,8 @@ AWS Management console &rarr Services &rarr `Lambda` &rarr Get Started (first ti
 Function Code: 
 
 1. Code entry type: Edit code inline
-2. Runtime: Python 3.7
-3. Handler: Lambda_function.lambda_handler
+2. Runtime: `Python 3.8`
+3. Handler: `Lambda_function.lambda_handler`
 4. Pull the code from `Lambda_handler.py`
 
 
