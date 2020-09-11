@@ -71,36 +71,51 @@ Create a topic &rarr; S3TriggerTopic &rarr; This trigger will send out an email 
 ##### follow the next steps to Add Trigger:
 
 •	Click on `Add Trigger` and from drop down select S3.
+
 •	Bucket select the `Lambda-S3-trigger-bucket` one created for SNS Topic.
+
 •	Event Type: `PUT` basically for which a file & object is uploaded to the bucket, It will send out the email whenever the lambda function
+
 •	Leave the fields `default` for `Prefix & Suffix` and Check `enable trigger`, then click on `Add`
+
 •	S3 trigger will be created. by default, it will be enabled.
+
 •	You may choose disable if lambda functions are not ready.
 
 #### follow the next steps to Add another Trigger for S3 deleting files:
 
 •	Click on `Add Trigger` and from drop down select S3.
+
 •	Bucket select the Lambda-S3-trigger-bucket.
+
 •	Event Type: `All Object delete events`
+
 •	Leave the fields `default` for `Prefix & Suffix` and Check `enable trigger`, then click on `Add`
+
 •	Trigger will be created.
 
 
 #### Check the executed role, if required modify the role function can public for the topic is created.
 
 •	Click on the link below `Execute Role` &rarr; ‘Existing role’ &rarr; view the ‘S3-Trigger-role’ on the IAM console.
+
 •	It will take it to properties of IAM console &rarr; under `Permissions` &rarr; Policy name &rarr; Edit Policy &rarr; `JSON` tab. As per the previous policy created should see two stages.
+
 •	follow the `bucket-policy.js` file.
 
 •	Click on `Review policy` and Save changes.
 
 #### Test the S3 Trigger and Lambda function is working.
 
-•	Please check S3 bucket is empty before moving forward.
-•	Click on `upload`, file `index.html` may keep all properties everything else default and create the bucket.
-•	Wait for few seconds/minutes to see Lambda function and SNS topic is working has expected.
-•	Open the email a/c to see if there is a notification email with details in it.
-•	Try to delete the file from S3 bucket, has created a notification trigger for deletion.
+•	Please check S3 bucket is empty before moving forward. 
+
+•	Click on `upload`, file `index.html` may keep all properties everything else default and create the bucket. 
+
+•	Wait for few seconds/minutes to see Lambda function and SNS topic is working has expected. 
+
+•	Open the email a/c to see if there is a notification email with details in it. 
+
+•	Try to delete the file from S3 bucket, has created a notification trigger for deletion. 
 
 #### Code is working has expected.
 
@@ -112,10 +127,15 @@ We were monitoring the events in S3 bucket and instructing lambda function to se
 
 In the cloud environment, AWS platform may select different ways to test and debug Lambda Function:
 •	**AWS CloudTrail**: log API calls going in and out Lambda function.
+
 •	**Amazon CloudWatch Logs**: have your lambda function send debug 0r execution logs result is success or failure and analyse it.
+
 •	**Cloud9 IDE**: run and debug your code in a browser and includes a terminal.
+
 •	**AWS X-Ray**: Allows to distributed application across AWS realm, check performance issue and error, which has a daemon which usually installs on VM’s however on Lambda is preinstalled. 
+
 •	In Lambda AWS console directly with test JSON data.
+
 •	**AWS SAM CLI**: Serverless Application Module, allows to run Lambda functions location and test by hitting events locally on machine integrated with CI/CD pipeline deployed in cloud.
 
 
@@ -127,20 +147,24 @@ AWS Console &rarr; Lambda &rarr; Debugging-Lambda-function &rarr;
 ##### Create a test Event’
 
 •	Click on `Select a test event` allows you to send chucks of JSON data, actually S3 events will be sending to the function. This will invoke the function.
+
 •	Should see `Event template` which are prepopulated and select `Amazon S3 Put` the trigger.
-•	Lambda-Event and create. This will be passed to def Lambda_handler of the Lambda function.
+
+•	Name has `LambdaEvent` and create. This will be passed to def Lambda_handler of the Lambda function.
+
 •	Click on `Test`. May check the succeeded logs.
 
  
 •	If any error regarding the SNS publish, check the IAM policy: should be SNS:Publish policy entry is created.
+Please follow the policy file `sns-policy.js`
 
 `{
 
         "Effect": "Allow",
         "Action": [
-            "SNS:Publish"
+            "sns:Publish"
         ],
-        "Resource": "*",
+        "Resource": "*"
      }
   ]
 }`
