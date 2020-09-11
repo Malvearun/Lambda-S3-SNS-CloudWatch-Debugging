@@ -19,9 +19,9 @@
     {
         "Effect": "Allow",
         "Action": [
-            "SNS:Publish"
+            "sns:Publish"
         ],
-        "Resource": "*",
+        "Resource": "*"
      }
   ]
 }
